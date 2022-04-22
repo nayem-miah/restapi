@@ -1,0 +1,15 @@
+
+
+1/ create a django app
+2/ create a react app with "npx create-react-app  name"
+3/ drag and drop the react app to as same as django manange.py diretory
+4/ then go to react app dir and command "npm run build" then build folder will be created insite the react app
+
+
+----------------------------------connection react and django----------------------------------------------------
+
+
+1/ go to django settings.py's TEMPLATES 'DIRS': [BASE_DIR,'reactapp/build'],
+2/then STATICFILES_DIRS = [BASE_DIR,'reactapp/build/static']
+3/ go to urls.py  from django.views.generic import TemplateView    
+4/ path('', TemplateView.as_view(template_name='index.html'),),

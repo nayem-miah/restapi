@@ -1,0 +1,15 @@
+1/ in urls.py
+from rest_framework.authtoken.views import obtain_auth_token
+
+2/ in urls.py 
+path('login-api/',obtain_auth_token),
+
+3/ in settings.py
+
+'DEFAULT_AUTHENTICATION_CLASSES': [
+
+'rest_framework.authentication.TokenAuthentication',
+
+]
+
+4/ go to postman and Headers write Authorization Token-here-the-token

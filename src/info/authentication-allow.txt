@@ -1,0 +1,22 @@
+1/ in settings.py
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        #'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
+    ]
+}
+
+2/ in views.py
+
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated, AllowAny
+
+3/ in views.py
+
+@api_view(['GET','POST'])
+@permission_classes([IsAuthenticated])
+#@permission_classes([AllowAny]) 
+def index(request):
+
+    return Response(context)
