@@ -10,4 +10,5 @@ urlpatterns = [
     
     path('', include('frontend.urls')),
     path('first/', include('first_app.urls')),
+    path('check/', include('test_api.urls')),
 ]

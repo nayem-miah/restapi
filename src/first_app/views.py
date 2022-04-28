@@ -161,3 +161,6 @@ def registationApi(request):
 
         return Response({"success": "An user successfully creates an account"})
 
+
+
+
