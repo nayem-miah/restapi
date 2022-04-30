@@ -3,9 +3,9 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from django.contrib.auth.models import User
 from rest_framework.permissions import AllowAny, IsAuthenticated # for authentication
-from rest_framework import serializers, status, permissions
+from rest_framework import status
 from rest_framework.views import APIView
-from . models import Contact,Agent, Home, Image_files
+from . models import Contact,Agent, Home
 from .serializers import Contact_serializer, Agent_serializer, Home_serializer,Home_details_serializer,Image_files_serializer
 from rest_framework import permissions
 from rest_framework.generics import ListAPIView,ListCreateAPIView,RetrieveAPIView,RetrieveDestroyAPIView,RetrieveUpdateAPIView
