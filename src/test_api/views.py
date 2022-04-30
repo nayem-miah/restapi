@@ -9,13 +9,13 @@ from rest_framework import mixins, generics
 
 
 #****************************************************************************
-# Create your views here
+#Create your views here
 
-# # generics
-# class List_api(ListAPIView):   #to have a list of data 
-#     permission_classes = (permissions.AllowAny,)
-#     queryset = Agent.objects.all()
-#     serializer_class = Agent_serializer
+# generics
+class List_api(ListAPIView):   #to have a list of data 
+    permission_classes = (permissions.IsAuthenticated,)
+    queryset = Agent.objects.all()
+    serializer_class = Agent_serializer
 
 
 
@@ -40,39 +40,39 @@ from rest_framework import mixins, generics
 
 
 
-#APIView 
-class List_api(APIView):
+# #APIView 
+# class List_api(APIView):
 
-    def get(self, request, format=None):
-        snippets = Agent.objects.all()
-        serializer = Agent_serializer(snippets, many=True)
-        return Response(serializer.data)
+#     def get(self, request, format=None):
+#         snippets = Agent.objects.all()
+#         serializer = Agent_serializer(snippets, many=True)
+#         return Response(serializer.data)
 
 
 
 #****************************************************************************
 
-## generics
-# class List_Create(ListCreateAPIView): #to have a list of data and to create
-#     permission_classes = (permissions.AllowAny,)
-#     queryset = Agent.objects.all()
-#     serializer_class = Agent_serializer
+# generics
+class List_Create(ListCreateAPIView): #to have a list of data and to create
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = Agent.objects.all()
+    serializer_class = Agent_serializer
 
 
-#APIView 
-class List_Create(APIView):
+# #APIView 
+# class List_Create(APIView):
 
-    def get(self, request, format=None):
-        snippets = Agent.objects.all()
-        serializer = Agent_serializer(snippets, many=True)
-        return Response(serializer.data)
+#     def get(self, request, format=None):
+#         snippets = Agent.objects.all()
+#         serializer = Agent_serializer(snippets, many=True)
+#         return Response(serializer.data)
 
-    def post(self, request, format=None):
-        serializer = Agent_serializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#     def post(self, request, format=None):
+#         serializer = Agent_serializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 

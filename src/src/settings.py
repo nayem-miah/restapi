@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken', # rest login token
     'rest_framework_simplejwt', # simplejwt
     'first_app',
+    'genaric',
+    'apiview',
+    'permission',
 ]
 
 MIDDLEWARE = [
