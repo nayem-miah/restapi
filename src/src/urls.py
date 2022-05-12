@@ -13,4 +13,7 @@ urlpatterns = [
     path('check/', include('test_api.urls')),
     path('genaric/', include('genaric.urls')),
     path('api-view/', include('apiview.urls')),
+    path('permission/', include('permission.urls')),
+    path('auth/', include('authen.urls')),
+    path('auth/view-rouder/', include('authen.rouders')),
 ]

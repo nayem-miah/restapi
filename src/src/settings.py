@@ -45,7 +45,10 @@ INSTALLED_APPS = [
     'first_app',
     'genaric',
     'apiview',
-    'permission',
+    'authen',
+
+   
+    
 ]
 
 MIDDLEWARE = [
@@ -175,14 +178,14 @@ REST_FRAMEWORK = {
     
 # default permission
     'DEFAULT_PERMISSION_CLASSES': [
-        # 'rest_framework.permissions.IsAuthenticated', # will work if authenticated
-        'rest_framework.permissions.AllowAny', # will work if even not authenticated
+        'rest_framework.permissions.IsAuthenticated', # will work if authenticated
+        # 'rest_framework.permissions.IsAuthenticatedOrReadOnly', # will work if even not authenticated
     ],
 
 
 # default authentication
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
+   
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',# create token part 3
         'rest_framework_simplejwt.authentication.JWTAuthentication', # simple jwt toekn

@@ -1,0 +1,12 @@
+
+************we discussed here*************
+
+authentication,
+permission,
+mix-auth,
+mix-permi,
+
+
+***********************
+viewset and routers
+
