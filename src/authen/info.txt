@@ -3,6 +3,7 @@
 
 authentication,
 permission,
+custom permission,
 mix-auth,
 mix-permi,
 

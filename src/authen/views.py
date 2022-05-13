@@ -1,3 +1,4 @@
+import imp
 from re import M
 from django.shortcuts import render
 from rest_framework.response import Response
@@ -9,7 +10,7 @@ from rest_framework import permissions
 from rest_framework import authentication
 from .mixin import MixAuth,MixPermission
 
-
+from .permission import IsStaff,IsAdmin
 
 #aamrteg
 
@@ -40,7 +41,40 @@ from .mixin import MixAuth,MixPermission
 ## mixin permission and authentication
 ## in mixin, we can also use serializer_class and other business logic to reduce code
 
-class Index(generics.ListAPIView, MixPermission, MixAuth):
+class List_api(generics.ListAPIView, MixPermission, MixAuth):
     queryset = Agent.objects.all()
     serializer_class = Agent_serializer
     
+
+
+class List_create(generics.ListCreateAPIView): # to query & to create data 
+    queryset = Agent.objects.all()
+    serializer_class = Agent_serializer
+    permission_classes = [IsStaff]
+ 
+
+
+class Retrive(generics.RetrieveAPIView): # to query a single data
+    queryset = Agent.objects.all()
+    serializer_class = Agent_serializer
+    lookup_field = 'pk'
+
+
+
+class Retrive_update(generics.RetrieveUpdateAPIView): # to query & update a single data
+    queryset = Agent.objects.all()
+    serializer_class = Agent_serializer
+    lookup_field = 'pk'
+
+
+class Retrive_destroy(generics.RetrieveDestroyAPIView): # to query & destroy a single data
+    queryset = Agent.objects.all()
+    serializer_class = Agent_serializer
+    lookup_field = 'pk'
+
+
+class Retrive_update_destroy(generics.RetrieveUpdateDestroyAPIView): # to query, update & destroy a single data
+    queryset = Agent.objects.all()
+    serializer_class = Agent_serializer
+    lookup_field = 'pk'
+
