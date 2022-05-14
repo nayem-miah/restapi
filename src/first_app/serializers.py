@@ -1,7 +1,9 @@
 
+from codecs import lookup_error
 from re import I
 from wsgiref.validate import validator
 from rest_framework import serializers
+from rest_framework.reverse import reverse
 from . models import Contact, Agent, Home, Image_files
 
 from . validators import validate_email  
@@ -14,8 +16,24 @@ class Contact_serializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+
+
+
+
+
 class Agent_serializer(serializers.ModelSerializer):
-    url = serializers.SerializerMethodField(read_only = True)# to have url 1
+    
+    url = serializers.SerializerMethodField(read_only = True)# to have url 1st way 1
+
+
+
+#****************** to have url best way******************
+    edit_url = serializers.HyperlinkedIdentityField(  # to have url 2nd way 
+        view_name= 'update',
+        lookup_field = 'pk'
+    )
+
+
     
     # # custom validation with serializer 2nd way. mostly 2nd one is used ******
     email = serializers.CharField(validators=[validate_email])
@@ -23,11 +41,25 @@ class Agent_serializer(serializers.ModelSerializer):
 
     class Meta:
         model = Agent
-        fields = ['url','id','name', 'biodata', 'email', 'phone', 'image', 'top_seller', 'date_hired']
+        fields = ['edit_url','url','id','name', 'biodata', 'email', 'phone', 'image', 'top_seller', 'date_hired']
     
-    def get_url(self, obj): # to have url 2 
- 
-        return f"http://localhost:8000/api-view/retrive/{obj.id}/"
+
+
+
+#********************* to have url*********************************
+    def get_url(self, obj): # to have url 1st way 2
+
+        request = self.context.get('request') # we get what the url request
+
+        if request is None:
+            return None
+
+        # here retrive-detail is url name from urls.py
+        return reverse("retrive-detail", kwargs={"pk": obj.pk}, request=request)
+
+
+
+
 
 
     # # custom validation with serializer 1st way************************************
