@@ -189,6 +189,10 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',# create token part 3
         # 'rest_framework_simplejwt.authentication.JWTAuthentication', # simple jwt toekn
-    ]
+    ],
+    
+    # # to have default renderer api data not with django interface api data 
+    # 'DEFAULT_RENDERER_CLASSES':('rest_framework.renderers.JSONRenderer',)
 }
+
 

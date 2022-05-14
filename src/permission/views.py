@@ -14,25 +14,6 @@ class List_api(generics.ListAPIView): # to query a list of data
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class List_create(generics.ListCreateAPIView): # to query & to create data 
     queryset = Agent.objects.all()
     serializer_class = Agent_serializer
