@@ -21,13 +21,15 @@ def apiOverView(request):
         
     }
 
+
     return Response(api_url) #api_url will 
 
 @api_view(['GET'])
 def tastList(request):
+
     tast = Tast.objects.all()
  
-    serializer = TastSerializer(tast, many = True) # data will be serialied
+    serializer = TastSerializer(tast, many = True) # data will be serialized
    
     return Response(serializer.data)
 
