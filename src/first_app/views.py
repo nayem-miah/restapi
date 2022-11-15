@@ -14,7 +14,6 @@ from rest_framework.generics import ListAPIView,ListCreateAPIView,RetrieveAPIVie
 from django.db.models import Q
 class Search(APIView):
         
-
         def post(self, request, format=None):
             data = self.request.data
             str = data['str']
@@ -133,7 +132,7 @@ def index(request):
 
 
 
-
+@api_view(['POST'])
 def registationApi(request):
     if request.method == 'POST':
         username = request.data['username']

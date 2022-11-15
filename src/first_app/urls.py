@@ -14,7 +14,7 @@ urlpatterns = [
     path('token',TokenObtainPairView.as_view()), # simple token 
     path('token/refresh',TokenRefreshView.as_view()), # simple token
 
-    path('contact', views.ContactApiView.as_view(), name='contact'),
+    path('contact/', views.ContactApiView.as_view(), name='contact'),
     path('list/', views.AgentListView.as_view(), name='list'),
     path('top-seller', views.AgentTopSellerView.as_view(), name='top'),
     path('<pk>', views.AgentDetailView.as_view(), name='detail'),

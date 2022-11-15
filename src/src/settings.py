@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken', # rest login token
     'rest_framework_simplejwt', # simplejwt
+    'rest_framework_simplejwt.token_blacklist',
     'first_app',
     'genaric',
     'apiview',
@@ -143,12 +144,28 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 from datetime import timedelta
 
 SIMPLE_JWT = {
+    # dateline of access token after 5 minites it wont work
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'ROTATE_REFRESH_TOKENS': False,
-    'BLACKLIST_AFTER_ROTATION': False,
-    'UPDATE_LAST_LOGIN': False,
+     #dateline of refresh token after 90 days refresh token wont work and user will be logged out
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=90),
+     
+    # # it wont create refresh and access token together
+    # 'ROTATE_REFRESH_TOKENS': False, 
 
+    # it will create refresh and access token together again and again.
+    'ROTATE_REFRESH_TOKENS': True,
+
+
+
+    # if it is True, refresh token will work for one time.
+    # We have use new refreah token again and again. It's must be true for security
+    # and add an app called 'rest_framework_simplejwt.token_blacklist',
+    'BLACKLIST_AFTER_ROTATION': True,
+    
+
+
+    
+    'UPDATE_LAST_LOGIN': False,
     'ALGORITHM': 'HS256',
     # 'SIGNING_KEY': settings.SECRET_KEY,
     'VERIFYING_KEY': None,
@@ -188,7 +205,7 @@ REST_FRAMEWORK = {
    
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',# create token part 3
-        # 'rest_framework_simplejwt.authentication.JWTAuthentication', # simple jwt toekn
+        'rest_framework_simplejwt.authentication.JWTAuthentication', # simple jwt toekn
     ],
     
     # # to have default renderer api data not with django interface api data 
